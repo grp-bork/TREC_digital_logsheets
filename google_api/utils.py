@@ -33,6 +33,15 @@ class GoogleAPI:
         self.client = gspread.authorize(creds)
 
     def read_table(self, file_key, worksheet):
+        """Read remote Google sheet as a Pandas dataframe
+
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+
+        Returns:
+            dataframe: created Pandas dataframe
+        """
         spreadsheet = self.client.open_by_key(file_key)
         sheet = spreadsheet.worksheet(worksheet)
         
@@ -41,8 +50,14 @@ class GoogleAPI:
         df = pd.DataFrame(data[1:], columns=header)
         return df
 
-    def add_row():
-        ...
+    def overwrite_table(self, file_key, worksheet, df):
+        """Write table to the Google sheet
 
-    def overwrite_table():
-        ...
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+            df (dataframe): target table as dataframe
+        """
+        spreadsheet = self.client.open_by_key(file_key)
+        sheet = spreadsheet.worksheet(worksheet)
+        sheet.update([df.columns.values.tolist()] + df.values.tolist())

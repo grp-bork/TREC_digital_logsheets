@@ -1,3 +1,10 @@
 {
-    
+    "251493309084964": {
+        "target_sheet": "1AtAvEF42UA07oaBe1FD0cPh8SaP_8c2KXbuaoTrzKQ8",
+        "worksheet": "Testing",
+        "testing": true,
+        "postprocessing": {
+            "Samples": "split_configurable_list"
+        }
+    }
 }

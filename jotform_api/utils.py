@@ -21,7 +21,8 @@ class JotformAPI:
         """
         suffix = ''
         if filter_datetime is not None:
-            params = {'filter': json.dumps({'created_at:gt': filter_datetime})}
+            params = {'filter': json.dumps({'created_at:gt': filter_datetime}),
+                      'orderby': 'created_at'}
             suffix = '&' + urllib.parse.urlencode(params)
              
         response = requests.get(f'{self.base_url}/form/{form_id}/submissions?apiKey={self.api_key}{suffix}')
