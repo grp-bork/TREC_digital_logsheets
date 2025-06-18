@@ -12,13 +12,13 @@ def load_logsheets():
         return logsheet_configs
 
 
-def load_latest_submissions(google_api):
-    df = google_api.read_table(os.environ['LATEST_SUBS_FILE_KEY'], 'latest')
+def load_submission_tracker(google_api):
+    df = google_api.read_table(os.environ['SUBMISSION_TRACKER_FILE_KEY'], 'latest')
     return dict(zip(df['form_id'], df['datetime']))
 
 
-def update_latest_submissions(google_api, latest_submissions):
-    google_api.overwrite_table(os.environ['LATEST_SUBS_FILE_KEY'], 'latest', latest_submissions)
+def update_submission_tracker(google_api, submission_tracker):
+    google_api.overwrite_table(os.environ['SUBMISSION_TRACKER_FILE_KEY'], 'latest', submission_tracker)
 
 
 def merge_tables(df1, df2):
