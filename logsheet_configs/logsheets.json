@@ -9,25 +9,70 @@
     },
     "251674350545963": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
-        "latest_sheet": "1Tcw4HWCMvgt8688IU0MOIHBXEStut_YaO9YX6qXldN4",
-        "latest_delay": 5,
         "worksheet": "AML environmental event",
-         "postprocessing": {
-            "Collected nets": "split_configurable_list"
+        "latest_submissions": {
+            "sheet": "1Tcw4HWCMvgt8688IU0MOIHBXEStut_YaO9YX6qXldN4",
+            "delay": 5
+        },
+        "postprocessing": {
+            "Collected nets": "split_configurable_list",
+            "Start time": "extract_time"
         },
         "actions": {
-            "update_dropdown_options": [
-            {
-                "form_id": "251674197619065",
-                "question_id": "16",
-                "attribute": "Event ID"
-            },
-            {
-                "form_id": "251674603839970",
-                "question_id": "33",
-                "attribute": "Event ID"
-            }
-        ]
+            "update_dropdown_options": 
+            [
+                {
+                    "form_id": "251674197619065",
+                    "question_id": "16",
+                    "attribute": "Environmental event ID"
+                },
+                {
+                    "form_id": "251674603839970",
+                    "question_id": "33",
+                    "attribute": "Environmental event ID"
+                }
+            ]
+        }
+    },
+    "251674197619065": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "worksheet": "Mesocosm tank",
+        "actions": {
+            "update_dropdown_options":
+            [
+                {
+                    "form_id": "251675072975972",
+                    "question_id": "38",
+                    "attribute": "Experiment ID"
+                }
+            ]
+        }
+    },
+    "251675072975972": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "worksheet": "Mesocosm sampling event",
+        "postprocessing": {
+            "Collected bottles": "split_configurable_list",
+            "Sampling time": "extract_time"
+        },
+        "actions": {
+            "update_dropdown_options":
+            [
+                {
+                    "form_id": "251674603839970",
+                    "question_id": "34",
+                    "attribute": "Mesocosm event ID"
+                }
+            ]
+        }
+    },
+    "251674603839970": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "worksheet": "AML bottle",
+        "postprocessing": {
+            "Created samples": "split_configurable_list",
+            "AML arrival": "extract_time",
+            "Time of concentration": "extract_time"
         }
     }
 }

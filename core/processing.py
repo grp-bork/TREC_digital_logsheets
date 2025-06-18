@@ -1,5 +1,5 @@
 class Curator:
-    def split_configurable_list(self, values):
+    def split_configurable_list(self, name, values):
         output = dict()
         index = 0
         for items in eval(values):
@@ -7,6 +7,9 @@ class Curator:
             for key in items.keys():
                 output[f'{key}_{index}'] = items[key]
         return output
+    
+    def extract_time(self, name, values):
+        return {name: values['timeInput']}
 
 
 def process_submissions(submissions, postprocessing):
@@ -29,7 +32,8 @@ def process_submissions(submissions, postprocessing):
             if question['name'] not in ['heading', 'submit2', 'divider']:
                 if question['text'] in postprocessing:
                     if question.get('answer'):
-                        conf_result = getattr(curator, postprocessing[question['text']])(question['answer'])
+                        conf_result = getattr(curator, postprocessing[question['text']])(question['text'], 
+                                                                                         question['answer'])
                         result = result | conf_result
                 else:
                     result[question['text']] = question.get('answer', None)

@@ -71,8 +71,6 @@ class JotformAPI:
             'apiKey': self.api_key,
         }
 
-        
-
         response = requests.post(f'{self.base_url}/form/{form_id}/question/{question_id}',
                                  params=params,
                                  headers=headers,
