@@ -1,6 +1,7 @@
 import os
 import json
 import pandas as pd
+import math
 
 
 def load_logsheets():
@@ -25,3 +26,7 @@ def merge_tables(df1, df2):
     merged = pd.concat([df1, df2], ignore_index=True)
     # convert NaN to None
     return merged.where(pd.notnull(merged), None)
+
+
+def clean_up_nulls(values):
+    return ["" if x is None or x == "nan" or (isinstance(x, float) and math.isnan(x)) else x for x in values]

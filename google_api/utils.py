@@ -3,6 +3,8 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+from core.utils import clean_up_nulls
+
 
 def create_keyfile_dict():
     """Build dict of Google credentials from env variables
@@ -32,6 +34,19 @@ class GoogleAPI:
         creds = ServiceAccountCredentials.from_json_keyfile_dict(create_keyfile_dict(), scope)
         self.client = gspread.authorize(creds)
 
+    def access_sheet(self, file_key, worksheet):
+        """Access remote Google worksheet
+
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+
+        Returns:
+            sheet: Google sheet
+        """
+        spreadsheet = self.client.open_by_key(file_key)
+        return spreadsheet.worksheet(worksheet)
+
     def read_table(self, file_key, worksheet):
         """Read remote Google sheet as a Pandas dataframe
 
@@ -42,14 +57,12 @@ class GoogleAPI:
         Returns:
             dataframe: created Pandas dataframe
         """
-        spreadsheet = self.client.open_by_key(file_key)
-        sheet = spreadsheet.worksheet(worksheet)
-        
+        sheet = self.access_sheet(file_key, worksheet)
         data = sheet.get_all_values()
         header = data[0]
         df = pd.DataFrame(data[1:], columns=header)
         return df
-
+    
     def overwrite_table(self, file_key, worksheet, df):
         """Write table to the Google sheet
 
@@ -61,3 +74,30 @@ class GoogleAPI:
         spreadsheet = self.client.open_by_key(file_key)
         sheet = spreadsheet.worksheet(worksheet)
         sheet.update([df.columns.values.tolist()] + df.values.tolist())
+
+    def add_row(self, file_key, worksheet, row_dict):
+        """Add single row to the Google sheet
+
+        Also resolve any changes in the headers
+
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+            row_dict (dict): dict representation logsheet contents
+        """
+        sheet = self.access_sheet(file_key, worksheet)
+        # Get current header
+        header = sheet.row_values(1)
+
+        # Detect and add missing columns
+        missing_cols = [key for key in row_dict if key not in header]
+        if missing_cols:
+            updated_header = header + missing_cols
+            sheet.update('1:1', [updated_header])
+            header = updated_header
+
+        # Prepare row values in correct order
+        row_values = [row_dict.get(col, "") for col in header]
+
+        # Append row
+        sheet.append_row(clean_up_nulls(row_values))
