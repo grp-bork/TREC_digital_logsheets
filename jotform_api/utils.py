@@ -59,7 +59,7 @@ class JotformAPI:
         Args:
             form_id (str): identifier of a form
             question_id (str): identifier of a form
-            values (str): pipe (|) separated values
+            values (str): newline separated values
 
         Returns:
             bool: True if request was successful
@@ -71,8 +71,10 @@ class JotformAPI:
             'apiKey': self.api_key,
         }
 
+        
+
         response = requests.post(f'{self.base_url}/form/{form_id}/question/{question_id}',
                                  params=params,
                                  headers=headers,
-                                 data=f'question[options]={values}')
+                                 data=f'question[list]={values}')
         return response.status_code == 200

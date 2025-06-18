@@ -6,6 +6,7 @@ from jotform_api.utils import JotformAPI
 from google_api.utils import GoogleAPI
 from core.utils import load_logsheets, load_submission_tracker, update_submission_tracker
 from core.processing import process_submissions
+from core.actions import run_actions
 
 
 def main():
@@ -34,15 +35,15 @@ def main():
             row_dicts = processed_df.to_dict(orient="records")
             for row in row_dicts:
                 google_api.add_row(config['target_sheet'], config['worksheet'], row)
+                run_actions(row, config.get('actions', dict()), jotform_api)
+
+            # TODO store to OC for backup - use submission_id as filename
 
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']
 
     submission_tracker = pd.DataFrame(list(submission_tracker.items()), columns=['form_id', 'datetime'])
     update_submission_tracker(google_api, submission_tracker)
-
-        # TODO store to OC for backup - only store if filename with submission_id does not exist - how to quickly check?
-        # need to compare with what I already had in table before I overwrite it
 
 
 if __name__ == '__main__':

@@ -6,5 +6,28 @@
         "postprocessing": {
             "Samples": "split_configurable_list"
         }
+    },
+    "251674350545963": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "latest_sheet": "1Tcw4HWCMvgt8688IU0MOIHBXEStut_YaO9YX6qXldN4",
+        "latest_delay": 5,
+        "worksheet": "AML environmental event",
+         "postprocessing": {
+            "Collected nets": "split_configurable_list"
+        },
+        "actions": {
+            "update_dropdown_options": [
+            {
+                "form_id": "251674197619065",
+                "question_id": "16",
+                "attribute": "Event ID"
+            },
+            {
+                "form_id": "251674603839970",
+                "question_id": "33",
+                "attribute": "Event ID"
+            }
+        ]
+        }
     }
 }
