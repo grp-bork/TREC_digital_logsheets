@@ -50,6 +50,8 @@ def main():
 
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']
+        else:
+            print('No new submissions.')
 
     submission_tracker = pd.DataFrame(list(submission_tracker.items()), columns=['form_id', 'datetime'])
     update_submission_tracker(google_api, submission_tracker)

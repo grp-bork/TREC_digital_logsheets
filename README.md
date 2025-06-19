@@ -1,3 +1,5 @@
+[![Process new submissions](https://github.com/grp-bork/TREC_digital_logsheets/actions/workflows/process_new_submissions.yml/badge.svg)](https://github.com/grp-bork/TREC_digital_logsheets/actions/workflows/process_new_submissions.yml)
+
 # TREC_digital_logsheets
 TREC digital logsheets processing
 
