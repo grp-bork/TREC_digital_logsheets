@@ -28,6 +28,10 @@ class JotformAPI:
         response = requests.get(f'{self.base_url}/form/{form_id}/submissions?apiKey={self.api_key}{suffix}')
         return json.loads(response.text)
     
+    def get_form_files(self, form_id):
+        response = requests.get(f'{self.base_url}/form/{form_id}/files?apiKey={self.api_key}')
+        return json.loads(response.text)
+    
     def get_form_questions(self, form_id):
         """Get list of form questions
 

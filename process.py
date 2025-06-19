@@ -7,6 +7,7 @@ from google_api.utils import GoogleAPI
 from core.utils import load_logsheets, load_submission_tracker, update_submission_tracker
 from core.processing import process_submissions
 from core.actions import run_actions
+from owncloud_api.store_jsons import store_submissions_to_oc
 
 
 def main():
@@ -26,6 +27,11 @@ def main():
         
         filter_datetime = submission_tracker.get(form_id, None)
         submissions = jotform_api.get_submissions(form_id, filter_datetime=filter_datetime)
+
+        # store war submissions to OwnCloud for backup
+        store_submissions_to_oc(submissions)
+
+        # parse submission and extract metadata
         processed_submissions = process_submissions(submissions, config.get('postprocessing', dict()))
 
         # store to Google sheet
@@ -36,8 +42,6 @@ def main():
             for row in row_dicts:
                 google_api.add_row(config['target_sheet'], config['worksheet'], row)
                 run_actions(row, config.get('actions', dict()), jotform_api)
-
-            # TODO store to OC for backup - use submission_id as filename
 
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']

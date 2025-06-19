@@ -10,6 +10,9 @@ class Curator:
     
     def extract_time(self, name, values):
         return {name: values['timeInput']}
+    
+    def assing_biosampleID():
+        ...
 
 
 def process_submissions(submissions, postprocessing):
