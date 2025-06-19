@@ -1,0 +1,42 @@
+name: Process new submissions
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:        # Allow manual triggering too
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run processing script
+        env:
+          JOTFORM_API_KEY: ${{ secrets.JOTFORM_API_KEY }}
+          JOTFORM_URL: ${{ secrets.JOTFORM_URL }}
+          SHEET_TYPE: ${{ secrets.SHEET_TYPE }}
+          SHEET_PROJECT_ID: ${{ secrets.SHEET_PROJECT_ID }}
+          SHEET_PRIVATE_KEY_ID: ${{ secrets.SHEET_PRIVATE_KEY_ID }}
+          SHEET_PRIVATE_KEY: ${{ secrets.SHEET_PRIVATE_KEY }}
+          SHEET_CLIENT_EMAIL: ${{ secrets.SHEET_CLIENT_EMAIL }}
+          SHEET_CLIENT_ID: ${{ secrets.SHEET_CLIENT_ID }}
+          SHEET_AUTH_URI: ${{ secrets.SHEET_AUTH_URI }}
+          SHEET_TOKEN_URI: ${{ secrets.SHEET_TOKEN_URI }}
+          SHEET_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.SHEET_AUTH_PROVIDER_X509_CERT_URL }}
+          SHEET_CLIENT_X509_CERT_URL: ${{ secrets.SHEET_CLIENT_X509_CERT_URL }}
+          UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
+          SUBMISSION_TRACKER_FILE_KEY: ${{ secrets.SUBMISSION_TRACKER_FILE_KEY }}
+          OWNCLOUD_USERNAME: ${{ secrets.OWNCLOUD_USERNAME }}
+          OWNCLOUD_PASSWORD: ${{ secrets.OWNCLOUD_PASSWORD }}
+        run: python process_new_submissions.py
