@@ -1,4 +1,11 @@
 def run_actions(submission, actions, jotform_api):
+    """Iterate over defined actions for a form and execute them on the submission
+
+    Args:
+        submission (dict): processed submission
+        actions (dict): config containing actions to be executed
+        jotform_api (JotformAPI): given instance of JotForm API
+    """
     for action in actions.keys():
         if action == 'update_dropdown_options':
             for item in actions[action]:

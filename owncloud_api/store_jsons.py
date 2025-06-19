@@ -6,6 +6,15 @@ from owncloud_api.utils import OwnCloudAPI
 
 
 def find_png_strings(data, found=None):
+    """Recursively find all PNG links for backup
+
+    Args:
+        data (dict): raw submission
+        found (list, optional): already found images. Defaults to None.
+
+    Returns:
+        list: list of found images
+    """
     if found is None:
         found = []
 
@@ -22,6 +31,13 @@ def find_png_strings(data, found=None):
 
 
 def store_submissions_to_oc(submissions):
+    """Backup raw submissions to OwnCloud as JSON
+
+    Additionally, download all images created during submission
+
+    Args:
+        submissions (dict): obtained submissions
+    """
     owncloud_api = OwnCloudAPI()
 
     for submission in submissions['content']:
