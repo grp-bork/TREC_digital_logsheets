@@ -21,7 +21,14 @@ echo "⚙️ Using conda path: $CONDA_PATH"
 echo "👤 Running under user: $USERNAME"
 
 # Install conda env
-$CONDA_PATH/bin/conda env create -y -f "$REPO_PATH/conda-env.yaml"
+ENV_NAME="TREC-digital-logsheets"
+
+if ! "$CONDA_PATH/bin/conda" env list | grep -qE "^$ENV_NAME\s"; then
+    echo "🔧 Environment '$ENV_NAME' does not exist. Creating..."
+    $CONDA_PATH/bin/conda env create -y -f "$REPO_PATH/conda-env.yaml"
+else
+    echo "✅ Environment '$ENV_NAME' already exists. Skipping creation."
+fi
 
 # Loop through all service/timer templates and install them
 for template in "$SERVICE_DIR"/*.template; do

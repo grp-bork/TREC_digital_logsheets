@@ -12,7 +12,7 @@ if [ "$LOCAL" != "$REMOTE" ]; then
   git pull origin main
 
   echo "[Watcher] Restarting main daemon..."
-  sudo systemctl restart process_new_submissions.service
+  sudo systemctl restart logsheets_process_new_submissions.service
 else
   echo "[Watcher] No updates."
 fi
