@@ -1,0 +1,10 @@
+[Unit]
+Description=Run logsheets_process_new_submissions Every 1 Minute
+
+[Timer]
+OnBootSec=5min
+OnUnitInactiveSec=1min
+Unit=logsheets_process_new_submissions.service
+
+[Install]
+WantedBy=timers.target
