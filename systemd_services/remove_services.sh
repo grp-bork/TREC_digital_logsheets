@@ -7,7 +7,7 @@ for template in "$SERVICE_DIR"/*.timer.template; do
 
     sudo systemctl stop "$servicename"
     sudo systemctl disable "$servicename"
-    sudo rm /etc/systemd/system/"$servicename"
+    sudo rm /etc/systemd/system/$servicename
 done
 
 # Loop through all services and remove them
@@ -16,7 +16,7 @@ for template in "$SERVICE_DIR"/*.service.template; do
 
     sudo systemctl stop "$servicename"
     sudo systemctl disable "$servicename"
-    sudo rm /etc/systemd/system/"$servicename"
+    sudo rm /etc/systemd/system/$servicename
 done
 
 sudo systemctl daemon-reexec
