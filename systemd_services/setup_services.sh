@@ -4,8 +4,8 @@
 
 set -e
 
-CONDA_PATH="$2"
-USERNAME="$3"
+CONDA_PATH="$1"
+USERNAME="$2"
 
 if [[ -z "$CONDA_PATH" || -z "$USERNAME" ]]; then
     echo "Usage: $0 <conda_path> <username>"
