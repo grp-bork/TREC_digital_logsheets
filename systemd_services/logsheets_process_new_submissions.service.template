@@ -3,7 +3,7 @@ Description=Run processing of digital logsheet submissions in Conda environment
 After=network.target
 
 [Service]
-User=xtrojak
+User={{USERNAME}}
 WorkingDirectory={{REPO_PATH}}
 ExecStart={{CONDA_PATH}}/bin/conda run -n TREC-digital-logsheets python process_new_submissions.py
 Restart=on-failure

@@ -3,6 +3,7 @@ Description=Git Repo Watcher
 After=network.target
 
 [Service]
+User={{USERNAME}}
 Type=oneshot
 Environment="REPO_PATH={{REPO_PATH}}"
 ExecStart={{REPO_PATH}}/systemd_services/check_for_updates.sh
