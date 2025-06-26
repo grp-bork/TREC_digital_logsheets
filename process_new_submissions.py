@@ -57,6 +57,8 @@ def main():
         else:
             print(0)
 
+    print('<<<')
+
     submission_tracker = pd.DataFrame(list(submission_tracker.items()), columns=['form_id', 'datetime'])
     update_submission_tracker(google_api, submission_tracker)
 
