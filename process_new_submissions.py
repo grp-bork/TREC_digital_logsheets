@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import argparse
 import pandas as pd
 import datetime
+from zoneinfo import ZoneInfo
 
 from jotform_api.utils import JotformAPI
 from google_api.utils import GoogleAPI
@@ -20,7 +21,7 @@ def main():
 
     submissions = dict()
 
-    print(f'>>> {datetime.datetime.now()}')
+    print(f'>>> {datetime.datetime.now(ZoneInfo("Europe/Paris"))}')
 
     print('Load submission tracker.')
     submission_tracker = load_submission_tracker(google_api)
