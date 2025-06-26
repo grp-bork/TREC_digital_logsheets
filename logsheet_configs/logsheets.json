@@ -10,10 +10,6 @@
     "251674350545963": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
         "worksheet": "AML environmental event",
-        "latest_submissions": {
-            "sheet": "1Tcw4HWCMvgt8688IU0MOIHBXEStut_YaO9YX6qXldN4",
-            "delay": 5
-        },
         "postprocessing": {
             "Collected nets": "split_configurable_list",
             "Start time": "extract_time"
@@ -27,7 +23,17 @@
                     "attribute": "Environmental event ID"
                 },
                 {
-                    "form_id": "251674603839970",
+                    "form_id": "251762656977373",
+                    "question_id": "33",
+                    "attribute": "Environmental event ID"
+                },
+                {
+                    "form_id": "251763891507364",
+                    "question_id": "33",
+                    "attribute": "Environmental event ID"
+                },
+                {
+                    "form_id": "251764100074347",
                     "question_id": "33",
                     "attribute": "Environmental event ID"
                 }
@@ -59,18 +65,46 @@
             "update_dropdown_options":
             [
                 {
-                    "form_id": "251674603839970",
+                    "form_id": "251762656977373",
+                    "question_id": "34",
+                    "attribute": "Mesocosm event ID"
+                },
+                {
+                    "form_id": "251763891507364",
+                    "question_id": "34",
+                    "attribute": "Mesocosm event ID"
+                },
+                {
+                    "form_id": "251764100074347",
                     "question_id": "34",
                     "attribute": "Mesocosm event ID"
                 }
             ]
         }
     },
-    "251674603839970": {
+    "251762656977373": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
-        "worksheet": "AML bottle",
+        "worksheet": "AML bottle HPF",
         "postprocessing": {
-            "Created samples": "split_configurable_list",
+            "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",
+            "AML arrival": "extract_time",
+            "Time of concentration": "extract_time"
+        }
+    },
+    "251763891507364": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "worksheet": "AML bottle CF",
+        "postprocessing": {
+            "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",
+            "AML arrival": "extract_time",
+            "Time of concentration": "extract_time"
+        }
+    },
+    "251764100074347": {
+        "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "worksheet": "AML bottle metaBGT",
+        "postprocessing": {
+            "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",
             "AML arrival": "extract_time",
             "Time of concentration": "extract_time"
         }
