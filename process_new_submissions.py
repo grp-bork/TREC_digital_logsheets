@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import argparse
 import pandas as pd
+import datetime
 
 from jotform_api.utils import JotformAPI
 from google_api.utils import GoogleAPI
@@ -19,30 +20,33 @@ def main():
 
     submissions = dict()
 
+    print(f'>>> {datetime.datetime.now()}')
+
     print('Load submission tracker.')
     submission_tracker = load_submission_tracker(google_api)
 
     for form_id in logsheet_configs.keys():
-        print(f'Processing form {form_id}')
+        print(f'Processing form {form_id}...')
         # process submissions
         config = logsheet_configs[form_id]
         
         filter_datetime = submission_tracker.get(form_id, None)
-        print('Obtaining new submissions.')
+        print('\tObtaining new submissions... ', end='')
         submissions = jotform_api.get_submissions(form_id, filter_datetime=filter_datetime)
 
-        # parse submission and extract metadata
-        print('Processing submissions.')
-        processed_submissions = process_submissions(submissions, config.get('postprocessing', dict()))
+        if len(submissions['content']) != 0:
+            print(len(submissions['content']))
+            # parse submission and extract metadata
+            print('\tProcessing submissions...')
+            processed_submissions = process_submissions(submissions, config.get('postprocessing', dict()))
 
-        # store to Google sheet
-        if processed_submissions:
             # store war submissions to OwnCloud for backup
-            print('Backing up submissions to OwnCloud.')
+            print('\tBacking up submissions to OwnCloud...')
             store_submissions_to_oc(submissions)
             processed_df = pd.DataFrame(processed_submissions)
 
-            print('Storing submissions in Google sheets.')
+            # store to Google sheet
+            print('\tStoring submissions in Google sheets...')
             row_dicts = processed_df.to_dict(orient="records")
             for row in row_dicts:
                 google_api.add_row(config['target_sheet'], config['worksheet'], row)
@@ -51,7 +55,7 @@ def main():
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']
         else:
-            print('No new submissions.')
+            print(0)
 
     submission_tracker = pd.DataFrame(list(submission_tracker.items()), columns=['form_id', 'datetime'])
     update_submission_tracker(google_api, submission_tracker)
