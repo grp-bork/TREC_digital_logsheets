@@ -2,7 +2,6 @@ import os
 import json
 import pandas as pd
 import math
-from datetime import datetime
 
 
 def load_logsheets():
@@ -33,10 +32,9 @@ def clean_up_nulls(values):
     return ["" if x is None or x == "nan" or (isinstance(x, float) and math.isnan(x)) else x for x in values]
 
 
-def update_status(logsheet_configs, submission_tracker, tracker_updated):
+def update_status(logsheet_configs, submission_tracker, tracker_updated, now):
     # Write latest run timestamp
     last_run_filename = 'last_run.txt'
-    now = datetime.now().replace(microsecond=0).isoformat()
     with open(last_run_filename, 'w') as f:
         f.write(now)
 

@@ -21,7 +21,9 @@ def main():
 
     submissions = dict()
 
-    print(f'>>> {datetime.datetime.now(ZoneInfo("Europe/Paris"))}')
+    now = datetime.datetime.now(ZoneInfo("Europe/Paris"))
+
+    print(f'>>> {now}')
 
     print('Load submission tracker.')
     submission_tracker = load_submission_tracker(google_api)
@@ -66,7 +68,7 @@ def main():
     if tracker_updated:
         update_submission_tracker(google_api, submission_tracker)
 
-    update_status(logsheet_configs, submission_tracker, tracker_updated)
+    update_status(logsheet_configs, submission_tracker, tracker_updated, now)
 
 
 if __name__ == '__main__':
