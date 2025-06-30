@@ -2,6 +2,7 @@ import os
 import json
 import pandas as pd
 import math
+from zoneinfo import ZoneInfo
 
 
 def load_logsheets():
@@ -43,6 +44,10 @@ def update_status(logsheet_configs, submission_tracker, tracker_updated, now):
 
         replace_map = {form_id: logsheet_configs[form_id]['worksheet'] for form_id in logsheet_configs.keys()}
         submission_tracker['form_id'] = submission_tracker['form_id'].replace(replace_map)
+
+        submission_tracker['datetime'] = pd.to_datetime(submission_tracker['datetime']).dt.tz_localize(ZoneInfo('America/New_York'))
+        submission_tracker['datetime'] = submission_tracker['datetime'].dt.tz_convert(ZoneInfo('Europe/Prague'))
+        submission_tracker['datetime'] = submission_tracker['datetime'].dt.strftime('%Y-%m-%d %H:%M:%S')
 
         submission_tracker.columns = ['Logsheet name', 'Latest submission']
         submission_tracker.to_csv(latest_filename, index=False)
