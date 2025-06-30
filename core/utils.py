@@ -36,7 +36,7 @@ def update_status(logsheet_configs, submission_tracker, tracker_updated, now):
     # Write latest run timestamp
     last_run_filename = 'last_run.txt'
     with open(last_run_filename, 'w') as f:
-        f.write(now)
+        f.write(now.replace(microsecond=0).isoformat())
 
     if tracker_updated:
         latest_filename = 'lastest_submissions.csv'
