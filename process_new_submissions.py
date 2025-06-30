@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 
 from jotform_api.utils import JotformAPI
 from google_api.utils import GoogleAPI
-from core.utils import load_logsheets, load_submission_tracker, update_submission_tracker
+from core.utils import load_logsheets, load_submission_tracker, update_submission_tracker, update_status
 from core.processing import process_submissions
 from core.actions import run_actions
 from owncloud_api.store_jsons import store_submissions_to_oc
@@ -25,6 +25,7 @@ def main():
 
     print('Load submission tracker.')
     submission_tracker = load_submission_tracker(google_api)
+    tracker_updated = False
 
     for form_id in logsheet_configs.keys():
         print(f'Processing form {form_id}...')
@@ -55,13 +56,17 @@ def main():
 
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']
+            tracker_updated = True
         else:
             print(0)
 
     print('<<<')
 
     submission_tracker = pd.DataFrame(list(submission_tracker.items()), columns=['form_id', 'datetime'])
-    update_submission_tracker(google_api, submission_tracker)
+    if tracker_updated:
+        update_submission_tracker(google_api, submission_tracker)
+
+    update_status(logsheet_configs, submission_tracker, tracker_updated)
 
 
 if __name__ == '__main__':
