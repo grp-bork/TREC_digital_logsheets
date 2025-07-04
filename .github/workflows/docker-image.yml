@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: xtrojak/trec-logsheets-processing
+      DOCKER_IMAGE: ghcr.io/grp-bork/trec-digital-logsheets-processing
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
@@ -24,8 +24,8 @@ jobs:
         echo ::set-output name=docker_image::${DOCKER_IMAGE}
     - name: Docker login
       env:
-        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USER: ${{ secrets.GHCR_DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.GHCR_DOCKER_PASSWORD }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image - AMD platform
