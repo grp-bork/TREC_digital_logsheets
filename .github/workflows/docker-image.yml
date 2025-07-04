@@ -27,7 +27,7 @@ jobs:
         DOCKER_USER: ${{ secrets.GHCR_DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.GHCR_DOCKER_PASSWORD }}
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        docker login ghcr.io -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image - AMD platform
       run: |
         docker buildx build --platform linux/amd64 \
