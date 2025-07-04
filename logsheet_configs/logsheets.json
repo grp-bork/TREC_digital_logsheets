@@ -9,6 +9,7 @@
     },
     "251674350545963": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "AML environmental event",
         "postprocessing": {
             "Collected nets": "split_configurable_list",
@@ -42,6 +43,7 @@
     },
     "251674197619065": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "Mesocosm tank",
         "actions": {
             "update_dropdown_options":
@@ -56,6 +58,7 @@
     },
     "251675072975972": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "Mesocosm sampling event",
         "postprocessing": {
             "Collected bottles": "split_configurable_list",
@@ -84,6 +87,7 @@
     },
     "251762656977373": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "AML bottle HPF",
         "postprocessing": {
             "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",
@@ -93,6 +97,7 @@
     },
     "251763891507364": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "AML bottle CF",
         "postprocessing": {
             "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",
@@ -102,6 +107,7 @@
     },
     "251764100074347": {
         "target_sheet": "1qYelX6ZK-LleSsaQzfIx3lI20Bt0ain0Hx6NPsZ121A",
+        "backup_sheet": "1fFD26b70zeQ6nUYw2yITa5mRrwSSwn88uX-a45-adVE",
         "worksheet": "AML bottle metaBGT",
         "postprocessing": {
             "Created samples (refers to 4 carriers in one position of puck)": "split_configurable_list",

@@ -54,6 +54,8 @@ def main():
             row_dicts = processed_df.to_dict(orient="records")
             for row in row_dicts:
                 google_api.add_row(config['target_sheet'], config['worksheet'], row)
+                if 'backup_sheet' in config:
+                    google_api.add_row(config['backup_sheet'], config['worksheet'], row)
                 run_actions(row, config.get('actions', dict()), jotform_api)
 
             # update submission_tracker
