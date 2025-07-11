@@ -14,7 +14,8 @@
         "worksheet": "AML environmental event",
         "postprocessing": {
             "Collected nets": "split_configurable_list",
-            "Start time": "extract_time"
+            "Start time": "extract_time",
+            "Weather conditions": "process_other_option"
         },
         "actions": {
             "update_dropdown_options": 

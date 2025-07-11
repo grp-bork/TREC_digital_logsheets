@@ -11,8 +11,11 @@ class Curator:
     def extract_time(self, name, values):
         return {name: values['timeInput']}
     
-    def assing_biosampleID():
-        ...
+    def process_other_option(self, name, values):
+        if type(values) == dict:
+            return {name: values['other']}
+        else:
+            return {name: values}
 
 
 def process_submissions(submissions, postprocessing):
