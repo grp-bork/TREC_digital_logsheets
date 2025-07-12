@@ -103,3 +103,8 @@ class GoogleAPI:
 
         # Append row
         sheet.append_row(clean_up_nulls(row_values))
+
+    @rate_limited_retry(max_retries=5, base_delay=1)
+    def get_header(self, file_key, worksheet):
+        sheet = self.access_sheet(file_key, worksheet)
+        return sheet.row_values(1)
