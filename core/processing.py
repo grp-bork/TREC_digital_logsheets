@@ -33,7 +33,8 @@ def process_submissions(submissions, postprocessing):
     results = []
 
     for submission in submissions['content']:
-        result = dict()
+        result = {'Submission ID': submission['id'],
+                  'Submission date': submission['created_at']}
         for question in submission['answers'].values():
             if question['name'] not in ['heading', 'submit2', 'divider']:
                 if question['text'] in postprocessing:

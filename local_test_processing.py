@@ -40,6 +40,8 @@ def main(source, use_local_headers):
 
                     remaining = [col for col in processed_df.columns if col not in header]
                     processed_df = processed_df[header + remaining]
+
+                    processed_df = processed_df.sort_values(by='Submission date')
                 
                 processed_df.to_excel(writer, sheet_name=config['worksheet'], index=False)
             else:
