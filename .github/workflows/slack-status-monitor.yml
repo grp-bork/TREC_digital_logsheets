@@ -1,0 +1,66 @@
+name: Check processing status and notify Slack
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every 10 minutes
+  workflow_dispatch:
+
+jobs:
+  check-timestamp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Check timestamp and notify if needed
+        env:
+          TIMESTAMP_URL: https://www.bork.embl.de/~trojak/TREC/last_run.txt
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          python <<EOF
+          import requests
+          from datetime import datetime, timedelta
+          import sys
+
+          url = "${{ env.TIMESTAMP_URL }}"
+          response = requests.get(url)
+          response.raise_for_status()
+
+          try:
+              ts = datetime.fromisoformat(response.text.strip())
+          except Exception as e:
+              print(f"Failed to parse timestamp: {e}")
+              sys.exit(1)
+
+          now = datetime.now(ts.tzinfo)
+          diff = now - ts
+
+          print(f"Timestamp: {ts}")
+          print(f"Current time: {now}")
+          print(f"Time difference: {diff}")
+
+          if diff > timedelta(hours=1):
+              import json
+              import urllib.request
+
+              slack_data = {
+                  "text": f"*Automatic Alert*: Digital logsheets processing - last run is older than 1 hour."
+              }
+
+              req = urllib.request.Request(
+                  url="${{ env.SLACK_WEBHOOK_URL }}",
+                  data=json.dumps(slack_data).encode("utf-8"),
+                  headers={"Content-Type": "application/json"}
+              )
+
+              with urllib.request.urlopen(req) as resp:
+                  print("Slack notification sent.")
+          else:
+              print("Timestamp is recent. No alert needed.")
+          EOF
