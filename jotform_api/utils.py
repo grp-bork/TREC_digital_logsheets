@@ -25,7 +25,7 @@ class JotformAPI:
                       'orderby': 'created_at'}
             suffix = '&' + urllib.parse.urlencode(params)
              
-        response = requests.get(f'{self.base_url}/form/{form_id}/submissions?apiKey={self.api_key}{suffix}')
+        response = requests.get(f'{self.base_url}/form/{form_id}/submissions?apiKey={self.api_key}{suffix}&limit=1000')
         return json.loads(response.text)
     
     def get_form_questions(self, form_id):
