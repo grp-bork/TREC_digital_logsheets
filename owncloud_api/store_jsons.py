@@ -58,3 +58,24 @@ def store_submissions_to_oc(submissions):
             img_data = requests.get(img_file).content
             filename = img_file.split('/')[-1]
             owncloud_api.upload_file(f'{folder}/{submission_id}/{filename}', img_data)
+
+def load_oc_jsons(form_id):
+    """Get all submissions stored in OwnCloud
+
+    Args:
+        form_id (str): target form ID
+
+    Returns:
+        dict: mocked dict with list of submissions
+    """
+    owncloud_api = OwnCloudAPI()
+
+    output = []
+
+    folders = owncloud_api.get_remote_folders(form_id)
+    for folder in folders:
+        if folder != form_id:
+            content = owncloud_api.download_json_file(f'{form_id}/{folder}/content.json')
+            output.append(content)
+
+    return {'content': output}
