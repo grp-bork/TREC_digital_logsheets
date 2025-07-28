@@ -1,0 +1,29 @@
+name: Backup production Google spreadsheet as Excel table
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Every day at 8
+  workflow_dispatch:     # Allow manual triggering too
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run backup script
+        env:
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          OWNCLOUD_USERNAME: ${{ secrets.OWNCLOUD_USERNAME }}
+          OWNCLOUD_PASSWORD: ${{ secrets.OWNCLOUD_PASSWORD }}
+        run: python backup_table.py
