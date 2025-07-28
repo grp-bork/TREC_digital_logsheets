@@ -19,7 +19,7 @@ RUN python -m venv TREC-logsheets-venv && \
     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
 # Add cron job to run script every minute and log output
-RUN echo "* * * * * cd /app/ && . /app/TREC-logsheets-venv/bin/activate && python /app/process_new_submissions.py >> /app/logs/output.log 2>&1" > /etc/cron.d/mycron && \
+RUN echo "* * * * * cd /app/ && . /app/TREC-logsheets-venv/bin/activate && python /app/process_new_submissions.py > /app/logs/stdout.log 2>&1" > /etc/cron.d/mycron && \
     chmod 0644 /etc/cron.d/mycron && \
     crontab /etc/cron.d/mycron
 
