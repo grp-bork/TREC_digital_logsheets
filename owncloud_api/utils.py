@@ -8,7 +8,7 @@ class OwnCloudAPI:
     def __init__(self):
         self.username = os.environ["OWNCLOUD_USERNAME"]
         self.password = os.environ["OWNCLOUD_PASSWORD"]
-        self.owncloud_url = "https://oc.embl.de/remote.php/dav/files/matej.trojak%40embl.de/TREC digital logsheets"
+        self.owncloud_url = "https://oc.embl.de/remote.php/dav/files/matej.trojak%40embl.de/TREC digital logsheets/jotform_backups"
 
     def upload_file(self, remote_path, bytes):
         """Upload a local file to the OwnCloud destination
