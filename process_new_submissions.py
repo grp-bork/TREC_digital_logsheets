@@ -13,7 +13,7 @@ from owncloud_api.store_jsons import store_submissions_to_oc
 
 
 def main():
-    load_dotenv('CONFIG.env') # env file for local testing
+    load_dotenv('CONFIG.env')
 
     logsheet_configs = load_logsheets()
     jotform_api = JotformAPI()

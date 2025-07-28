@@ -5,10 +5,10 @@ from xml.etree import ElementTree
 
 
 class OwnCloudAPI:
-    def __init__(self):
+    def __init__(self, subfolder):
         self.username = os.environ["OWNCLOUD_USERNAME"]
         self.password = os.environ["OWNCLOUD_PASSWORD"]
-        self.owncloud_url = "https://oc.embl.de/remote.php/dav/files/matej.trojak%40embl.de/TREC digital logsheets/jotform_backups"
+        self.owncloud_url = f"https://oc.embl.de/remote.php/dav/files/matej.trojak%40embl.de/TREC digital logsheets/{subfolder}"
 
     def upload_file(self, remote_path, bytes):
         """Upload a local file to the OwnCloud destination
@@ -28,8 +28,23 @@ class OwnCloudAPI:
             print({response.status_code} - {response.text})
         return success
     
+    def download_txt_file(self, remote_path):
+        """Download txt file form remote path
+
+        Args:
+            remote_path (str): location of remote file
+        """
+        response = requests.get(f'{self.owncloud_url}/{remote_path}',
+            auth=(self.username, self.password)
+        )
+        success = response.status_code in [200, 201, 204]
+        if not success:
+            print({response.status_code} - {response.text})
+        else:
+            return response.text
+    
     def download_json_file(self, remote_path):
-        """Download file form remote path
+        """Download JSON file form remote path
 
         Args:
             remote_path (str): location of remote file

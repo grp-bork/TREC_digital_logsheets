@@ -38,7 +38,7 @@ def store_submissions_to_oc(submissions):
     Args:
         submissions (dict): obtained submissions
     """
-    owncloud_api = OwnCloudAPI()
+    owncloud_api = OwnCloudAPI('jotform_backups')
 
     for submission in submissions['content']:
         # create existing folder for form
@@ -68,7 +68,7 @@ def load_oc_jsons(form_id):
     Returns:
         dict: mocked dict with list of submissions
     """
-    owncloud_api = OwnCloudAPI()
+    owncloud_api = OwnCloudAPI('jotform_backups')
 
     output = []
 
