@@ -1,25 +1,38 @@
 import requests
 import datetime
-import hashlib
 import os
 from dotenv import load_dotenv
+from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.discovery import build
 
 from owncloud_api.utils import OwnCloudAPI
-
-
-def compute_md5(file_path):
-    hasher = hashlib.md5()
-    with open(file_path, 'rb') as f:
-        for chunk in iter(lambda: f.read(4096), b''):
-            hasher.update(chunk)
-    return hasher.hexdigest()
+from google_api.utils import create_keyfile_dict
 
 
 load_dotenv('CONFIG.env')
 
 EXCEL_FILE = 'spreadsheet.xlsx'
-HASH_FILE = 'last_backup_hash.txt'
+LAST_FILE = 'last_backup.txt'
 GOOGLE_SHEET_ID = os.getenv('GOOGLE_SHEET_ID')
+
+scope = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+creds = ServiceAccountCredentials.from_json_keyfile_dict(create_keyfile_dict(), scope)
+service = build('drive', 'v3', credentials=creds)
+
+# get modified timestamp
+result = service.files().get(fileId=GOOGLE_SHEET_ID, fields='modifiedTime').execute()
+last_modified = datetime.datetime.strptime(result['modifiedTime'], '%Y-%m-%dT%H:%M:%S.%fZ')
+
+# get the last backup timestamp
+print('Download file with last backup timestamp.')
+owncloud_api = OwnCloudAPI('google_backups')
+last_backup = owncloud_api.download_txt_file(LAST_FILE)
+last_backup = datetime.datetime.strptime(last_backup, '%Y-%m-%dT%H:%M:%S.%fZ')
+
+# compare with last backup timestmap
+if last_modified <= last_backup:
+    print('No changes detected. Skipping upload.')
+    exit(0)
 
 # download Google spreadsheet as Excel
 print('Download Excel spreadsheet')
@@ -30,20 +43,6 @@ response.raise_for_status()
 with open(EXCEL_FILE, 'wb') as f:
     f.write(response.content)
 
-# compute MD5 of the Excel file
-print('Compute its MD5 hash')
-current_hash = compute_md5(EXCEL_FILE)
-
-# get MD5 of the last file
-print('Download previous M5D hash')
-owncloud_api = OwnCloudAPI('google_backups')
-previous_hash = owncloud_api.download_txt_file(HASH_FILE)
-
-# compare with stored hash
-if current_hash == previous_hash:
-    print('No changes detected. Skipping upload.')
-    exit(0)
-
 # create filename from current date
 now = datetime.datetime.now().strftime('%Y%m%d')
 output_filename = f'{now}.xlsx'
@@ -53,11 +52,11 @@ with open(EXCEL_FILE, 'rb') as file:
     owncloud_api.upload_file(f'files/{output_filename}', file)
     print(f'Uploaded {output_filename} to OwnCloud.')
 
-# save new hash
-with open(HASH_FILE, 'w') as file:
-    file.write(current_hash)
+# save new timestamp
+with open(LAST_FILE, 'w') as file:
+    file.write(result['modifiedTime'])
 
-# store new hash
-with open(HASH_FILE, 'rb') as file:
-    owncloud_api.upload_file(HASH_FILE, file)
-    print(f'Uploaded {HASH_FILE} to OwnCloud.')
+# store new timestamp
+with open(LAST_FILE, 'rb') as file:
+    owncloud_api.upload_file(LAST_FILE, file)
+    print(f'Uploaded {LAST_FILE} to OwnCloud.')
