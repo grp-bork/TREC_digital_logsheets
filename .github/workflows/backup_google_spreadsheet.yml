@@ -24,6 +24,17 @@ jobs:
       - name: Run backup script
         env:
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          SHEET_TYPE: ${{ secrets.SHEET_TYPE }}
+          SHEET_PROJECT_ID: ${{ secrets.SHEET_PROJECT_ID }}
+          SHEET_PRIVATE_KEY_ID: ${{ secrets.SHEET_PRIVATE_KEY_ID }}
+          SHEET_PRIVATE_KEY: ${{ secrets.SHEET_PRIVATE_KEY }}
+          SHEET_CLIENT_EMAIL: ${{ secrets.SHEET_CLIENT_EMAIL }}
+          SHEET_CLIENT_ID: ${{ secrets.SHEET_CLIENT_ID }}
+          SHEET_AUTH_URI: ${{ secrets.SHEET_AUTH_URI }}
+          SHEET_TOKEN_URI: ${{ secrets.SHEET_TOKEN_URI }}
+          SHEET_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.SHEET_AUTH_PROVIDER_X509_CERT_URL }}
+          SHEET_CLIENT_X509_CERT_URL: ${{ secrets.SHEET_CLIENT_X509_CERT_URL }}
+          UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
           OWNCLOUD_USERNAME: ${{ secrets.OWNCLOUD_USERNAME }}
           OWNCLOUD_PASSWORD: ${{ secrets.OWNCLOUD_PASSWORD }}
         run: python backup_table.py
