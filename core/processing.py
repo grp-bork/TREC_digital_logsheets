@@ -17,6 +17,9 @@ class Curator:
         else:
             return {name: values}
 
+    def process_file_upload(self, name, values):
+        return {name: values[0]}
+
 
 def process_submissions(submissions, postprocessing):
     """Process new submissions for a form

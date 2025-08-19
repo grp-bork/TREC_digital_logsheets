@@ -5,7 +5,8 @@
         "worksheet": "Testing",
         "testing": true,
         "postprocessing": {
-            "Samples": "split_configurable_list"
+            "Samples": "split_configurable_list",
+            "File Upload": "process_file_upload"
         }
     },
     "251674350545963": {
