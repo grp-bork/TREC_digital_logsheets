@@ -18,7 +18,9 @@ class Curator:
             return {name: values}
 
     def process_file_upload(self, name, values):
-        return {name: values[0]}
+        if len(values) != 0:
+            return {name: values[0]}
+        return {name: None}
 
     def process_site_layout(self, name, values):
         output = dict()
@@ -27,6 +29,9 @@ class Curator:
             if lst_values[i] != '':
                 output[f'distance {key} (m)'] = int(lst_values[i])
         return output
+
+    def process_multiple_choice(self, name, values):
+        return {name: ','.join(values)}
 
 
 def process_submissions(submissions, postprocessing):
@@ -47,7 +52,7 @@ def process_submissions(submissions, postprocessing):
         result = {'Submission ID': submission['id'],
                   'Submission date': submission['created_at']}
         for question in submission['answers'].values():
-            if question['name'] not in ['heading', 'submit2', 'divider', 'image']:
+            if question['type'] not in ['control_button', 'control_head', 'control_image', 'control_divider']:
                 if question['text'] in postprocessing:
                     if question.get('answer'):
                         conf_result = getattr(curator, postprocessing[question['text']])(question['text'], 
