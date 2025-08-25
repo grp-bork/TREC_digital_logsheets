@@ -1,3 +1,6 @@
+from core.utils import TABLE_HEADERS
+
+
 class Curator:
     def split_configurable_list(self, name, values):
         output = dict()
@@ -41,6 +44,15 @@ class Curator:
         for string in values.split('\n'):
             key, value = string.split(': ')
             output[f'{name} - {key}'] = value[1:-1]
+        return output
+
+    def process_table(self, name, values):
+        output = dict()
+        for key in values.keys():
+            lst_values = eval(values[key])
+            for i in range(len(lst_values)):
+                if lst_values[i] != '':
+                    output[f'{name} - {TABLE_HEADERS[name][i]} - {key}'] = lst_values[i]
         return output
 
 

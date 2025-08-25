@@ -214,6 +214,16 @@
     "252221487579061": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 5"
+        "worksheet": "LSI 5",
+        "postprocessing": {
+            "Atmosphere sensor": "process_table",
+            "Geiger counter": "process_table",
+            "Multimeter - Transect 1": "process_table",
+            "Multimeter - Transect 2": "process_table",
+            "Multimeter - Transect 3": "process_table",
+            "FTIR scan performed - soil transect 1": "process_multiple_choice",
+            "FTIR scan performed - soil transect 2": "process_multiple_choice",
+            "FTIR scan performed - soil transect 3": "process_multiple_choice"
+        }
     }
 }

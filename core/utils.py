@@ -5,6 +5,15 @@ import math
 from zoneinfo import ZoneInfo
 
 
+TABLE_HEADERS = {
+    'Atmosphere sensor': ['Sediment', 'Soil transect 1', 'Soil transect 2', 'Soil transect 3'],
+    'Geiger counter': ['Sediment', 'Soil transect 1', 'Soil transect 2', 'Soil transect 3'],
+    'Multimeter - Transect 1': ['Sample 1', 'Sample 2', 'Sample 3'],
+    'Multimeter - Transect 2': ['Sample 1', 'Sample 2', 'Sample 3'],
+    'Multimeter - Transect 3': ['Sample 1', 'Sample 2', 'Sample 3']
+}
+
+
 def load_logsheets():
     with open(f'logsheet_configs/logsheets.json') as json_data:
         logsheet_configs = json.load(json_data)
