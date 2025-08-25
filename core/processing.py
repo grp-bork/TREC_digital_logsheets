@@ -33,6 +33,9 @@ class Curator:
     def process_multiple_choice(self, name, values):
         return {name: ','.join(values)}
 
+    def process_image_checkboxes(self, name, values):
+        return {name: ','.join(values.split('\n'))}
+
 
 def process_submissions(submissions, postprocessing):
     """Process new submissions for a form

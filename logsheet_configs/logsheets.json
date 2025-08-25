@@ -129,12 +129,20 @@
     "251923404703047": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 3"
+        "worksheet": "LSI 3",
+        "postprocessing": {
+            "Transect slope aspect / exposition": "process_multiple_choice",
+            "Qualitative assessment of anthropogenic pressure": "process_multiple_choice"
+        }
     },
     "251923839372970": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 4 & 5"
+        "worksheet": "LSI 4 & 6",
+        "postprocessing": {
+            "Root Structure (Types)": "process_image_checkboxes",
+            "Color present in core (according to Munsell chart)": "process_image_checkboxes"
+        }
     },
     "251932921396059": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
