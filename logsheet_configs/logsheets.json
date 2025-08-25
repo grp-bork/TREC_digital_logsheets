@@ -154,7 +154,18 @@
     "251943339902966": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 16"
+        "worksheet": "LSI 16",
+        "postprocessing": {
+            "CTD start time": "extract_time",
+            "CTD end time": "extract_time",
+            "Processing start time": "extract_time",
+            "Processing end time": "extract_time",
+            "Collection start time": "extract_time",
+            "Collection end time": "extract_time",
+            "MTE": "process_multiple_choice",
+            "CTD": "process_multiple_choice",
+            "Record video": "process_file_upload"
+        }
     },
     "251943473853970": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
