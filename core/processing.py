@@ -20,6 +20,14 @@ class Curator:
     def process_file_upload(self, name, values):
         return {name: values[0]}
 
+    def process_site_layout(self, name, values):
+        output = dict()
+        lst_values = eval(values['Distance (m)'])
+        for i, key in enumerate('ABCDEFGH'):
+            if lst_values[i] != '':
+                output[f'distance {key} (m)'] = int(lst_values[i])
+        return output
+
 
 def process_submissions(submissions, postprocessing):
     """Process new submissions for a form
@@ -39,7 +47,7 @@ def process_submissions(submissions, postprocessing):
         result = {'Submission ID': submission['id'],
                   'Submission date': submission['created_at']}
         for question in submission['answers'].values():
-            if question['name'] not in ['heading', 'submit2', 'divider']:
+            if question['name'] not in ['heading', 'submit2', 'divider', 'image']:
                 if question['text'] in postprocessing:
                     if question.get('answer'):
                         conf_result = getattr(curator, postprocessing[question['text']])(question['text'], 
