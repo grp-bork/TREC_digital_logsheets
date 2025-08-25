@@ -147,7 +147,18 @@
     "251932921396059": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 7"
+        "worksheet": "LSI 7",
+        "postprocessing": {
+            "Fauna": "process_multiselect_grid",
+            "Flora": "process_multiple_choice",
+            "Sediment type": "process_multiple_choice",
+            "Sediment Topology": "process_multiple_choice",
+            "Sediment Color": "process_multiple_choice",
+            "Water Color": "process_multiple_choice",
+            "Waves": "process_multiple_choice",
+            "Core Color": "process_multiple_choice",
+            "Qualitative assessment of anthropogenic pressure": "process_multiselect_grid"
+        }
     },
     "251941165889066": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",

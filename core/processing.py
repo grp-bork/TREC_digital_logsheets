@@ -36,6 +36,13 @@ class Curator:
     def process_image_checkboxes(self, name, values):
         return {name: ','.join(values.split('\n'))}
 
+    def process_multiselect_grid(self, name, values):
+        output = dict()
+        for string in values.split('\n'):
+            key, value = string.split(': ')
+            output[f'{name} - {key}'] = value[1:-1]
+        return output
+
 
 def process_submissions(submissions, postprocessing):
     """Process new submissions for a form
