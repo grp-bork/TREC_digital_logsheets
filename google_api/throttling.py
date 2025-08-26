@@ -4,7 +4,7 @@ import functools
 from gspread.exceptions import APIError
 
 
-def rate_limited_retry(max_retries=5, base_delay=1.0):
+def rate_limited_retry(max_retries=10, base_delay=1.0):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
