@@ -76,7 +76,7 @@ class GoogleAPI:
         sheet = spreadsheet.worksheet(worksheet)
         sheet.update([df.columns.values.tolist()] + df.values.tolist())
 
-    @rate_limited_retry(max_retries=5, base_delay=1)
+    @rate_limited_retry()
     def add_row(self, file_key, worksheet, row_dict):
         """Add single row to the Google sheet
 
