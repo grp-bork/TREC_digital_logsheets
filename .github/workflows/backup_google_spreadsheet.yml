@@ -23,7 +23,8 @@ jobs:
 
       - name: Run backup script
         env:
-          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          LSI_GOOGLE_SHEET_ID: ${{ secrets.LSI_GOOGLE_SHEET_ID }}
+          AML_GOOGLE_SHEET_ID: ${{ secrets.AML_GOOGLE_SHEET_ID }}
           SHEET_TYPE: ${{ secrets.SHEET_TYPE }}
           SHEET_PROJECT_ID: ${{ secrets.SHEET_PROJECT_ID }}
           SHEET_PRIVATE_KEY_ID: ${{ secrets.SHEET_PRIVATE_KEY_ID }}
