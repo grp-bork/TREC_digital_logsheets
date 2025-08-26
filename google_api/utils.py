@@ -4,7 +4,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 from core.utils import clean_up_nulls
-from google_api.throttling import rate_limited_retry
+from google_api.throttling import rate_limited_with_retry
 
 
 def create_keyfile_dict():
@@ -76,7 +76,7 @@ class GoogleAPI:
         sheet = spreadsheet.worksheet(worksheet)
         sheet.update([df.columns.values.tolist()] + df.values.tolist())
 
-    @rate_limited_retry()
+    @rate_limited_with_retry()
     def add_row(self, file_key, worksheet, row_dict):
         """Add single row to the Google sheet
 
@@ -104,7 +104,7 @@ class GoogleAPI:
         # Append row
         sheet.append_row(clean_up_nulls(row_values))
 
-    @rate_limited_retry(max_retries=5, base_delay=1)
+    @rate_limited_with_retry()
     def get_header(self, file_key, worksheet):
         sheet = self.access_sheet(file_key, worksheet)
         return sheet.row_values(1)
