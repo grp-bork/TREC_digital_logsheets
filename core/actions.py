@@ -15,4 +15,7 @@ def run_actions(submission, actions, jotform_api):
                 jotform_api.update_dropdown_options(item['form_id'], item['question_id'], updated_list)
         elif action == 'set_default_value':
             for item in actions[action]:
+                value = submission[item['attribute']]
+                if value is None:
+                    value = ''
                 jotform_api.set_default_value(item['form_id'], item['question_id'], submission[item['attribute']])
