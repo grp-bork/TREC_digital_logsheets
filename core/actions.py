@@ -18,4 +18,4 @@ def run_actions(submission, actions, jotform_api):
                 value = submission[item['attribute']]
                 if value is None:
                     value = ''
-                jotform_api.set_default_value(item['form_id'], item['question_id'], submission[item['attribute']])
+                jotform_api.set_default_value(item['form_id'], item['question_id'], value)
