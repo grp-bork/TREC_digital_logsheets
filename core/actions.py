@@ -13,3 +13,6 @@ def run_actions(submission, actions, jotform_api):
                 current_list = question_details['content']['list']
                 updated_list = current_list + '\n' + submission[item['attribute']]
                 jotform_api.update_dropdown_options(item['form_id'], item['question_id'], updated_list)
+        elif action == 'set_default_value':
+            for item in actions[action]:
+                jotform_api.set_default_value(item['form_id'], item['question_id'], submission[item['attribute']])

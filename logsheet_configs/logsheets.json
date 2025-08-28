@@ -225,5 +225,79 @@
             "FTIR scan performed - soil transect 2": "process_multiple_choice",
             "FTIR scan performed - soil transect 3": "process_multiple_choice"
         }
+    },
+    "252392628434057": {
+        "target_sheet": "1AtAvEF42UA07oaBe1FD0cPh8SaP_8c2KXbuaoTrzKQ8",
+        "worksheet": "Reset site ID",
+        "actions": {
+            "set_default_value":
+            [
+                {
+                    "form_id": "251601860906051",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251923404703047",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251923839372970",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251932921396059",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251941165889066",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251942196087970",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251943339902966",
+                    "question_id": "205",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251943473853970",
+                    "question_id": "205",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251943574041961",
+                    "question_id": "205",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251942978115970",
+                    "question_id": "205",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251943079660968",
+                    "question_id": "253",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "251941845843061",
+                    "question_id": "3",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "252221487579061",
+                    "question_id": "36",
+                    "attribute": "Site ID"
+                }
+            ]
+        }
     }
 }

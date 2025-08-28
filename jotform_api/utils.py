@@ -76,3 +76,27 @@ class JotformAPI:
                                  headers=headers,
                                  data=f'question[list]={values}')
         return response.status_code == 200
+
+    def set_default_value(self, form_id, question_id, default_value):
+        """Set default value for a text widget
+
+        Args:
+            form_id (str): identifier of a form
+            question_id (str): identifier of a question
+            default_value (str): default value to set
+
+        Returns:
+            bool: True if request was successful
+        """
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        params = {
+            'apiKey': self.api_key,
+        }
+
+        response = requests.post(f'{self.base_url}/form/{form_id}/question/{question_id}',
+                                 params=params,
+                                 headers=headers,
+                                 data=f'question[defaultValue]={default_value}')
+        return response.status_code == 200
