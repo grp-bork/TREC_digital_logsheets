@@ -52,11 +52,14 @@ def main():
             # store to Google sheet
             print('\tStoring submissions in Google sheets...')
             row_dicts = processed_df.to_dict(orient="records")
+
             for row in row_dicts:
-                google_api.add_row(config['target_sheet'], config['worksheet'], row)
-                if 'backup_sheet' in config:
-                    google_api.add_row(config['backup_sheet'], config['worksheet'], row)
                 run_actions(row, config.get('actions', dict()), jotform_api)
+
+            google_api.add_rows(config['target_sheet'], config['worksheet'], row_dicts)
+
+            if 'backup_sheet' in config:
+                google_api.add_rows(config['backup_sheet'], config['worksheet'], row_dicts)
 
             # update submission_tracker
             submission_tracker[form_id] = submissions['content'][0]['created_at']

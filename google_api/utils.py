@@ -77,32 +77,35 @@ class GoogleAPI:
         sheet.update([df.columns.values.tolist()] + df.values.tolist())
 
     @rate_limited_with_retry()
-    def add_row(self, file_key, worksheet, row_dict):
-        """Add single row to the Google sheet
+    def add_rows(self, file_key, worksheet, row_dicts):
+        """Add a list of rows to the Google sheet
 
         Also resolve any changes in the headers
 
         Args:
             file_key (str): identifier of Google sheet
             worksheet (str): identifier of sheet tab
-            row_dict (dict): dict representation logsheet contents
+            row_dicts (list): list of dict representation of logsheet contents
         """
         sheet = self.access_sheet(file_key, worksheet)
         # Get current header
         header = sheet.row_values(1)
 
         # Detect and add missing columns
-        missing_cols = [key for key in row_dict if key not in header]
+        missing_cols = [key for key in row_dicts[0] if key not in header]
         if missing_cols:
             updated_header = header + missing_cols
             sheet.update('1:1', [updated_header])
             header = updated_header
 
         # Prepare row values in correct order
-        row_values = [row_dict.get(col, "") for col in header]
+        values_to_append = []
+        for row in row_dicts:
+            row_values = [row.get(col, "") for col in header]
+            values_to_append.append(clean_up_nulls(row_values))
 
-        # Append row
-        sheet.append_row(clean_up_nulls(row_values))
+        # Append rows
+        sheet.append_rows(values_to_append)
 
     @rate_limited_with_retry()
     def get_header(self, file_key, worksheet):

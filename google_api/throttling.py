@@ -3,7 +3,7 @@ import functools
 from gspread.exceptions import APIError
 
 
-def rate_limited_with_retry(delay=0.5, max_retries=7):
+def rate_limited_with_retry(delay=1, max_retries=7):
     """Decorator that combines rate limiting on every call with retry logic for API errors.
     
     Args:
