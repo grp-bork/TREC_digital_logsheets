@@ -19,6 +19,7 @@ def rate_limited_with_retry(delay=1, max_retries=7):
                 try:
                     return func(*args, **kwargs)
                 except APIError as e:
+                    print(e)
                     if attempt < max_retries:
                         current_delay *= 2  # exponential backoff
                         print(f"!!! Rate limit hit. Retrying in {current_delay:.1f} seconds...")

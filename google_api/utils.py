@@ -111,3 +111,69 @@ class GoogleAPI:
     def get_header(self, file_key, worksheet):
         sheet = self.access_sheet(file_key, worksheet)
         return sheet.row_values(1)
+
+    @rate_limited_with_retry()
+    def is_checkbox_checked(self, file_key, worksheet, cell='A1'):
+        """Check if a checkbox in the specified cell is checked
+        
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+            cell (str): cell reference (default: 'A1')
+            
+        Returns:
+            bool: True if checkbox is checked, False otherwise
+        """
+        sheet = self.access_sheet(file_key, worksheet)
+        try:
+            cell_value = sheet.acell(cell).value
+            # Google Sheets checkboxes return "TRUE" or "FALSE" as strings
+            return cell_value == "TRUE"
+        except Exception as e:
+            print(f"Error checking checkbox in {cell}: {e}")
+            return False
+
+    @rate_limited_with_retry()
+    def set_checkbox(self, file_key, worksheet, cell='A1', checked=False):
+        """Set a checkbox in the specified cell
+        
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+            cell (str): cell reference (default: 'A1')
+            checked (bool): whether to check or uncheck the checkbox
+        """
+        sheet = self.access_sheet(file_key, worksheet)
+        value = True if checked else False
+        sheet.update(cell, [[value]])
+
+    @rate_limited_with_retry()
+    def get_all_worksheets(self, file_key):
+        """Get all worksheet names from a spreadsheet
+        
+        Args:
+            file_key (str): identifier of Google sheet
+            
+        Returns:
+            list: list of worksheet names
+        """
+        try:
+            spreadsheet = self.client.open_by_key(file_key)
+            return [ws.title for ws in spreadsheet.worksheets()]
+        except Exception as e:
+            print(f"Error getting worksheets: {e}")
+            return []
+
+    @rate_limited_with_retry()
+    def clear_worksheet_data(self, file_key, worksheet):
+        """Clear all data from a worksheet
+        
+        Args:
+            file_key (str): identifier of Google sheet
+            worksheet (str): identifier of sheet tab
+        """
+        sheet = self.access_sheet(file_key, worksheet)
+        header = sheet.row_values(1)
+        sheet.clear()
+        sheet.update('1:1', [header])
+        sheet.freeze(rows=1)
