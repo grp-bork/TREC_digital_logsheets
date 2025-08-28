@@ -24,26 +24,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Set up environment variables
-      run: |
-          # Google config
-          SHEET_TYPE: ${{ secrets.SHEET_TYPE }}
-          SHEET_PROJECT_ID: ${{ secrets.SHEET_PROJECT_ID }}
-          SHEET_PRIVATE_KEY_ID: ${{ secrets.SHEET_PRIVATE_KEY_ID }}
-          SHEET_PRIVATE_KEY: ${{ secrets.SHEET_PRIVATE_KEY }}
-          SHEET_CLIENT_EMAIL: ${{ secrets.SHEET_CLIENT_EMAIL }}
-          SHEET_CLIENT_ID: ${{ secrets.SHEET_CLIENT_ID }}
-          SHEET_AUTH_URI: ${{ secrets.SHEET_AUTH_URI }}
-          SHEET_TOKEN_URI: ${{ secrets.SHEET_TOKEN_URI }}
-          SHEET_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.SHEET_AUTH_PROVIDER_X509_CERT_URL }}
-          SHEET_CLIENT_X509_CERT_URL: ${{ secrets.SHEET_CLIENT_X509_CERT_URL }}
-          UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
-        
-          # LSI Merge Configuration
-          MAIN_SHEET_ID_SOURCE="${{ secrets.MAIN_SHEET_ID_SOURCE }}"
-          BACKUP_SHEET_ID_SOURCE="${{ secrets.BACKUP_SHEET_ID_SOURCE }}"
-          MAIN_SHEET_ID_TARGET="${{ secrets.MAIN_SHEET_ID_TARGET }}"
-          BACKUP_SHEET_ID_TARGET="${{ secrets.BACKUP_SHEET_ID_TARGET }}"
-        
     - name: Run merge submissions
+      env:
+        SHEET_TYPE: ${{ secrets.SHEET_TYPE }}
+        SHEET_PROJECT_ID: ${{ secrets.SHEET_PROJECT_ID }}
+        SHEET_PRIVATE_KEY_ID: ${{ secrets.SHEET_PRIVATE_KEY_ID }}
+        SHEET_PRIVATE_KEY: ${{ secrets.SHEET_PRIVATE_KEY }}
+        SHEET_CLIENT_EMAIL: ${{ secrets.SHEET_CLIENT_EMAIL }}
+        SHEET_CLIENT_ID: ${{ secrets.SHEET_CLIENT_ID }}
+        SHEET_AUTH_URI: ${{ secrets.SHEET_AUTH_URI }}
+        SHEET_TOKEN_URI: ${{ secrets.SHEET_TOKEN_URI }}
+        SHEET_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.SHEET_AUTH_PROVIDER_X509_CERT_URL }}
+        SHEET_CLIENT_X509_CERT_URL: ${{ secrets.SHEET_CLIENT_X509_CERT_URL }}
+        UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
+        MAIN_SHEET_ID_SOURCE: ${{ secrets.MAIN_SHEET_ID_SOURCE }}
+        BACKUP_SHEET_ID_SOURCE: ${{ secrets.BACKUP_SHEET_ID_SOURCE }}
+        MAIN_SHEET_ID_TARGET: ${{ secrets.MAIN_SHEET_ID_TARGET }}
+        BACKUP_SHEET_ID_TARGET: ${{ secrets.BACKUP_SHEET_ID_TARGET }}
       run: python merge_submissions.py
