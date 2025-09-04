@@ -189,22 +189,46 @@
     "251943473853970": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 17"
+        "worksheet": "LSI 17",
+        "postprocessing": {
+            "FM20-E20 - filtration duration": "extract_time",
+            "FM5-SG5 - filtration duration": "extract_time"
+        }
     },
     "251943574041961": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 18"
+        "worksheet": "LSI 18",
+        "postprocessing": {
+            "S20 (1) - filtration duration": "extract_time",
+            "S20 (2) - filtration duration": "extract_time",
+            "S320-S023 (1) - filtration duration": "extract_time",
+            "S320-S023 (2) - filtration duration": "extract_time",
+            "S<02 (1) - filtration duration": "extract_time",
+            "S<02 (2) - filtration duration": "extract_time"
+        }
     },
     "251942978115970": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 19"
+        "worksheet": "LSI 19",
+        "postprocessing": {
+            "MB320-MB033 - filtration duration": "extract_time",
+            "HLB-PPL - filtration duration": "extract_time"
+        }
     },
     "251943079660968": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
-        "worksheet": "LSI 20 & 21"
+        "worksheet": "LSI 20 & 21",
+        "postprocessing": {
+            "PM (1) - filtration duration": "extract_time",
+            "PM (2) - filtration duration": "extract_time",
+            "PM (3) - filtration duration": "extract_time",
+            "PM (blank) - filtration duration": "extract_time",
+            "HP - filtration duration": "extract_time",
+            "CP-G - filtration duration": "extract_time"
+        }
     },
     "251941845843061": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
