@@ -39,11 +39,15 @@ class Curator:
     def process_image_checkboxes(self, name, values):
         return {name: ','.join(values.split('\n'))}
 
-    def process_multiselect_grid(self, name, values):
+    def process_multiselect_table(self, name, values):
         output = dict()
-        for string in values.split('\n'):
-            key, value = string.split(': ')
-            output[f'{name} - {key}'] = value[1:-1]
+        for creature in values.keys():
+            if len(values[creature]) != 0:
+                lst_values = eval(values[creature])
+                store_value = ','.join(lst_values)
+            else:
+                store_value = ''
+            output[f'{name} - {creature}'] = store_value
         return output
 
     def process_table(self, name, values):
