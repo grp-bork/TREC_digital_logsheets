@@ -140,8 +140,8 @@
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
         "worksheet": "LSI 4 & 6",
         "postprocessing": {
-            "Root Structure (Types)": "process_image_checkboxes",
-            "Color present in core (according to Munsell chart)": "process_image_checkboxes"
+            "Root types": "process_multiple_choice",
+            "Colors in core": "process_multiple_choice"
         }
     },
     "251932921396059": {
