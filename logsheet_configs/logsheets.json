@@ -177,6 +177,16 @@
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
         "worksheet": "LSI 12 & 13"
     },
+    "252655081347055": {
+        "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
+        "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
+        "worksheet": "LSI 15",
+        "postprocessing": {
+            "Soil transect 1": "process_table",
+            "Soil transect 2": "process_table",
+            "Soil transect 3": "process_table"
+        }
+    },
     "251943339902966": {
         "target_sheet": "1qxiZFzIF4zQ9NrjfPJ_vxQ1OzItcW_GF6gjKDN8VV1I",
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
@@ -304,6 +314,11 @@
                 {
                     "form_id": "252221487579061",
                     "question_id": "36",
+                    "attribute": "Site ID"
+                },
+                {
+                    "form_id": "252655081347055",
+                    "question_id": "3",
                     "attribute": "Site ID"
                 }
             ]
