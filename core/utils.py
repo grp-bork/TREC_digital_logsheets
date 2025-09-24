@@ -10,7 +10,10 @@ TABLE_HEADERS = {
     'Geiger counter': ['Sediment', 'Soil transect 1', 'Soil transect 2', 'Soil transect 3'],
     'Multimeter - Transect 1': ['Sample 1', 'Sample 2', 'Sample 3'],
     'Multimeter - Transect 2': ['Sample 1', 'Sample 2', 'Sample 3'],
-    'Multimeter - Transect 3': ['Sample 1', 'Sample 2', 'Sample 3']
+    'Multimeter - Transect 3': ['Sample 1', 'Sample 2', 'Sample 3'],
+    'Soil transect 1': ['Sample 1', 'Sample 2', 'Sample 3'],
+    'Soil transect 2': ['Sample 1', 'Sample 2', 'Sample 3'],
+    'Soil transect 3': ['Sample 1', 'Sample 2', 'Sample 3']
 }
 
 
