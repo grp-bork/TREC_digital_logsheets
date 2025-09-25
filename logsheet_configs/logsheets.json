@@ -123,9 +123,7 @@
         "backup_sheet": "1D70hTdxsapO5oKPoC4NoNtNOkaXjCtF0gtEDDqopjoM",
         "worksheet": "LSI 1",
         "postprocessing": {
-            "Site layout": "process_site_layout",
-            "Sampling time start": "extract_time",
-            "Sampling time end": "extract_time"
+            "Site layout": "process_site_layout"
         }
     },
     "251923404703047": {
