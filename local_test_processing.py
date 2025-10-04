@@ -9,7 +9,7 @@ from core.processing import process_submissions
 from owncloud_api.store_jsons import load_oc_jsons
 
 
-def main(source, use_local_headers):
+def main(source, use_local_headers, form_ids):
     load_dotenv('CONFIG.env') # env file for local testing
 
     logsheet_configs = load_logsheets()
@@ -17,7 +17,12 @@ def main(source, use_local_headers):
     google_api = GoogleAPI()
 
     with pd.ExcelWriter('all_submissions.xlsx', engine='openpyxl') as writer:
-        for form_id in logsheet_configs.keys():
+        if form_ids is None:
+            form_ids = logsheet_configs.keys()
+        else:
+            form_ids = form_ids.split(',')
+
+        for form_id in form_ids:
             print(f'Processing form {form_id}...')
             config = logsheet_configs[form_id]
             if source == 'jotform':
@@ -56,6 +61,7 @@ if __name__ == '__main__':
     optional.add_argument('--source', type=str, default='jotform', 
                           help='Specify source for submissions, can be jotform or oc.')
     optional.add_argument('--use_local_headers', action=argparse.BooleanOptionalAction, default=False)
+    optional.add_argument('--form_ids', type=str, default=None, help='Specify comma separated list of form ids to process')
     
     args = args_parser.parse_args()
-    main(args.source, args.use_local_headers)
+    main(args.source, args.use_local_headers, args.form_ids)
