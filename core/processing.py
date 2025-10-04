@@ -53,10 +53,11 @@ class Curator:
     def process_table(self, name, values):
         output = dict()
         for key in values.keys():
-            lst_values = eval(values[key])
-            for i in range(len(lst_values)):
-                if lst_values[i] != '':
-                    output[f'{name} - {TABLE_HEADERS[name][i]} - {key}'] = lst_values[i]
+            if len(values[key]) != 0:
+                lst_values = eval(values[key])
+                for i in range(len(lst_values)):
+                    if lst_values[i] != '':
+                        output[f'{name} - {TABLE_HEADERS[name][i]} - {key}'] = lst_values[i]
         return output
 
 
