@@ -6,7 +6,8 @@
         "testing": true,
         "postprocessing": {
             "Samples": "split_configurable_list",
-            "File Upload": "process_file_upload"
+            "File Upload": "process_file_upload",
+            "Test other choice": "process_other_option"
         }
     },
     "251674350545963": {
@@ -142,7 +143,8 @@
         "postprocessing": {
             "Root types": "process_multiple_choice",
             "Colors in core": "process_multiple_choice",
-            "Sampling time start": "extract_time"
+            "Sampling time start": "extract_time",
+            "Sampling depth (cm)": "process_other_option"
         }
     },
     "251932921396059": {
@@ -240,7 +242,8 @@
             "FTIR scan performed - soil transect 2": "process_multiple_choice",
             "FTIR scan performed - soil transect 3": "process_multiple_choice",
             "Time start": "extract_time",
-            "Time end": "extract_time"
+            "Time end": "extract_time",
+            "Sampling depth (cm)": "process_other_option"
         }
     },
     "252392628434057": {
