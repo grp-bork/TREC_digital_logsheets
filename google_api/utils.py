@@ -35,6 +35,7 @@ class GoogleAPI:
         creds = ServiceAccountCredentials.from_json_keyfile_dict(create_keyfile_dict(), scope)
         self.client = gspread.authorize(creds)
 
+    @rate_limited_with_retry()
     def access_sheet(self, file_key, worksheet):
         """Access remote Google worksheet
 
@@ -48,6 +49,7 @@ class GoogleAPI:
         spreadsheet = self.client.open_by_key(file_key)
         return spreadsheet.worksheet(worksheet)
 
+    @rate_limited_with_retry()
     def read_table(self, file_key, worksheet):
         """Read remote Google sheet as a Pandas dataframe
 
@@ -64,6 +66,7 @@ class GoogleAPI:
         df = pd.DataFrame(data[1:], columns=header)
         return df
     
+    @rate_limited_with_retry()
     def overwrite_table(self, file_key, worksheet, df):
         """Write table to the Google sheet
 
