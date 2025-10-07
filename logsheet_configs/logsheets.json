@@ -184,7 +184,8 @@
         "postprocessing": {
             "Soil transect 1": "process_table",
             "Soil transect 2": "process_table",
-            "Soil transect 3": "process_table"
+            "Soil transect 3": "process_table",
+            "Sampling depth (cm)": "process_other_option"
         }
     },
     "251943339902966": {
